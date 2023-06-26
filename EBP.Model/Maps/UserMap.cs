@@ -11,10 +11,12 @@ namespace EBP.Model.Maps
             builder.Property(x => x.UserName)
                 .HasMaxLength(100)
                 .IsRequired(true);
-            builder.Property(x=>x.Password)
+            builder.Property(x=>x.UserLastName)
                 .HasMaxLength (100)
                 .IsRequired(true);
-
+            builder.Property(x => x.RolType)
+             .HasMaxLength(100)
+             .IsRequired(true);
         }
     }
 }
