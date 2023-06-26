@@ -13,7 +13,8 @@ namespace EBP.Model.Context
             modelBuilder.ApplyConfiguration(new DepartmentMap());
             modelBuilder.ApplyConfiguration(new PersonelMap());
             modelBuilder.ApplyConfiguration(new UserMap());
-            modelBuilder.ApplyConfiguration(new BrandMap());    
+            modelBuilder.ApplyConfiguration(new BrandMap());
+            modelBuilder.ApplyConfiguration(new InventoryMap());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -21,5 +22,6 @@ namespace EBP.Model.Context
         public DbSet<Personel> Personels { get; set;}
         public DbSet<User> Users { get; set; }
         public DbSet<Brand> Brands { get; set;}
+        public DbSet<Inventory> Inventory { get; set; }
     }
 }
