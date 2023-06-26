@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace EBP.Model.Entities
 {
-
-    public class User:CoreEntity
+    public class PersonelUser:CoreEntity
     {
         public string UserName { get; set; }
         public string UserLastName { get; set; }
