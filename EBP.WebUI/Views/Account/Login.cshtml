@@ -1,0 +1,40 @@
+﻿@model EBP.WebUI.Models.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+
+
+<body>
+	<!--/login-->
+
+	<div class="error_page">
+		<!--/login-top-->
+
+		<div class="error-top">
+			<h2 class="inner-tittle page">EPP</h2>
+			<div class="login">
+				<h3 class="inner-tittle t-inner">Giriş Yap</h3>
+				<form asp-controller="Account" asp-action="Login" method="post">
+					<input type="text" class="text" name="Name" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
+					<input type="text" value="Password" name="Surname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+					<select class="form-select" aria-label="Default select example" name="LoginType">
+						<option selected>Giriş Yapan Kullanıcı Ünvanı Seçiniz</option>
+						<option value="1">Admin</option>
+						<option value="2">Şef</option>
+					</select>
+					<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
+					<div class="clearfix"></div>
+				</form>
+			</div>
+
+
+		</div>
+
+
+		<!--//login-top-->
+	</div>
+
+</body>

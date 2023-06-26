@@ -12,14 +12,14 @@ namespace EBP.Model.Context
         {
             modelBuilder.ApplyConfiguration(new DepartmentMap());
             modelBuilder.ApplyConfiguration(new PersonelMap());
-            modelBuilder.ApplyConfiguration(new RolMap());
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new BrandMap());    
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Personel> Personels { get; set;}
-        public DbSet<Rol> Rols { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Brand> Brands { get; set;}
     }
 }

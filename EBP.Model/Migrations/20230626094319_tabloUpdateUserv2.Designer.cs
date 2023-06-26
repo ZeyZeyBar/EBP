@@ -4,43 +4,22 @@ using EBP.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EBP.Model.Migrations
 {
     [DbContext(typeof(EBPContext))]
-    partial class EBPContextModelSnapshot : ModelSnapshot
+    [Migration("20230626094319_tabloUpdateUserv2")]
+    partial class tabloUpdateUserv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EBP.Model.Entities.Brand", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrandName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Brands");
-                });
 
             modelBuilder.Entity("EBP.Model.Entities.Department", b =>
                 {

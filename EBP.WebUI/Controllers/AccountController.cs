@@ -14,16 +14,14 @@ namespace EBP.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly ICoreService<User> _userDb;
-        private readonly ICoreService<Rol> _rolDb;
         private readonly ICoreService<Personel> _personelDb;
 
-        public AccountController( ICoreService<User> userDb,ICoreService<Rol> rolDb,ICoreService<Personel> personelDb)
+        public AccountController( ICoreService<User> userDb,ICoreService<Personel> personelDb)
         {
             _userDb = userDb;
-            _rolDb = rolDb;
 
         }
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
@@ -31,9 +29,9 @@ namespace EBP.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
-            if (lvm.LoginType == 1) //user
+            if (lvm.LoginType == 1) //personel user
             {
-                var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.Password == lvm.Password);
+                var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.UserLastName == lvm.Surname);
                 if (result != null)
                 {
                     // claims(talepler)
@@ -43,7 +41,8 @@ namespace EBP.WebUI.Controllers
                         new Claim("LoginType", lvm.LoginType.ToString()),
                         new Claim(ClaimTypes.Name, result.UserName),
 
-                       // new Claim(ClaimTypes., result.Password)
+                        new Claim(ClaimTypes.Surname, result.UserLastName),
+                        new Claim(ClaimTypes.Role,result.RolType)
                     };
 
 
@@ -51,7 +50,7 @@ namespace EBP.WebUI.Controllers
                     ClaimsPrincipal principal = new ClaimsPrincipal(user);
 
                     await HttpContext.SignInAsync(principal);
-                    return RedirectToAction("Index", "BasicUser", new { area = "User" });
+                    return RedirectToAction("Index", "Admin", new { area = "User" });
                 }
             }
             return View();
