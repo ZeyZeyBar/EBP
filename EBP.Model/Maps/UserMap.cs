@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EBP.Model.Maps
 {
-    public class UserMap :CoreMap<User>
+    public class UserMap :CoreMap<PersonelUser>
     {
-        public override void Configure(EntityTypeBuilder<User> builder)
+        public override void Configure(EntityTypeBuilder<PersonelUser> builder)
         {
             builder.Property(x => x.UserName)
                 .HasMaxLength(100)

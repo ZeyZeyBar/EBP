@@ -1,0 +1,39 @@
+﻿@model PersonelDepartmentInventoryDto
+@{
+    ViewData["Title"] = "PersonelDepartmentInventory";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Personelin Departman Envanter  Bilgileri</h1>
+
+<form>
+    <input type="hidden" name="DepartmentId" value="@Model.DepartmentId" />
+    <input type="hidden" name="BrandId" value="@Model.BrandId" />
+
+    <label for="departmentName">Departman</label><br />
+    <select class="form-select" aria-label="Default select example" name="Departments" itemid="@Model.DepartmentId" disabled>
+        @foreach (var item in Model.Departments)
+        {
+            <option value="@item.ID">@item.DepartmentName</option>
+        }
+    </select><br />
+
+    <label for="materialName">Malzeme Cinsi</label> <br />
+    <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName" readonly /><br />
+
+    <label for="materialCode">Malzeme Kodu</label> <br />
+    <input type="text" name="MaterialCode" value="@Model.MaterialCode" readonly /><br />
+
+    <label for="materialCount">Malzeme Miktarı</label> <br />
+    <input type="number" name="Count" value="@Model.Count" readonly /><br />
+
+    <label for="materialBrand">Malzeme Markası</label><br />
+    <select class="form-select" aria-label="Default select example" name="Brands" itemid="@Model.BrandId" disabled>
+        @foreach (var item in Model.Brands)
+        {
+            <option value="@item.ID">@item.BrandName</option>
+        }
+    </select><br />
+
+    
+</form>

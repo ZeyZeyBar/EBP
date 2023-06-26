@@ -14,6 +14,6 @@ namespace EBP.Model.Entities
 
         public DateTime PersonelBirthDay { get; set; }
         public string PersonelAddress { get; set; }
-        public ICollection<User> Users { get; set; }
+        public ICollection<PersonelUser> Users { get; set; }
     }
 }
