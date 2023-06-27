@@ -1,0 +1,18 @@
+﻿@model ChiefDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/User/Views/Shared/_ChiefLayout.cshtml";
+}
+
+<h1>Şef Profil Sayfası</h1>
+
+
+@if (TempData["WrongChiefError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        TempData["WrongChiefError"]
+    </div>
+}
+<br />
+<br />
+@Model.Name &nbsp; @Model.Surname &nbsp; @Model.DepartmentName

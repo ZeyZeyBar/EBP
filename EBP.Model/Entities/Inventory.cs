@@ -1,4 +1,5 @@
 ﻿using EBP.Core.Entity;
+using System.Collections.Generic;
 
 namespace EBP.Model.Entities
 {
@@ -8,8 +9,8 @@ namespace EBP.Model.Entities
         public string MaterialCode { get; set; }
         public int Count { get; set; }
         public int DepartmentID { get; set; }
-        public Department Department { get; set; }
         public int BrandID{ get; set; }
-        public Brand Brand { get; set; }
+        public List<Brand> Brands { get; set; }
+        public List<Department> Departments { get; set; }
     }
 }

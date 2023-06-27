@@ -33,7 +33,8 @@ namespace EBP.WebUI.Areas.User.Controllers
 			var record = new PersonelDto()
 			{
 				Name = result.PersonelName,
-				Surname = result.PersonelLastName
+				Surname = result.PersonelLastName,
+
 			};
 			return View(record);
 		}
@@ -59,8 +60,7 @@ namespace EBP.WebUI.Areas.User.Controllers
 
 			};
 			return View(record);
-
-
         }
-	}
+		
+    }
 }

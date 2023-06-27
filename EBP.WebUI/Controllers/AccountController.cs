@@ -53,7 +53,7 @@ namespace EBP.WebUI.Controllers
                     return RedirectToAction("Index", "Personel", new { area = "User" });
                 }
             }
-            else if (lvm.LoginType == 2)//ADMİN
+            else if (lvm.LoginType == 2)//chief
             {
 				var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.UserLastName == lvm.Surname);
 				if (result != null)
@@ -74,7 +74,7 @@ namespace EBP.WebUI.Controllers
 					ClaimsPrincipal principal = new ClaimsPrincipal(user);
 
 					await HttpContext.SignInAsync(principal);
-					return RedirectToAction("Index", "Admin", new { area = "User" });
+					return RedirectToAction("Index", "Chief", new { area = "User" });
 				}
 			}
             return View();
