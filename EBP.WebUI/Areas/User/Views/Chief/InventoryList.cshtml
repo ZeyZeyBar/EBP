@@ -17,36 +17,38 @@ else
 {
     <table class="table table-striped">
         <thead>
+            <tr><a asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" asp-route-id="@Model" class="btn btn-success">Envanter Ekle</a></tr>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Malzeme Cinsi</th>
                 <th scope="col">Malzeme Kodu</th>
                 <th scope="col">Miktarı</th>
                 <th scope="col">Markası</th>
+                <th scope="col">Düzenleme</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<input type="text" name="DepartmentID" value="@item.DepartmentID" readonly />
-                    <br />*@
                     <th scope="row">@item.ID</th>
                     <td>@item.MaterialTypeName</td>
                     <td>@item.MaterialCode</td>
                     <td>@item.Count</td>
                     <td>
-                        <select class="form-select" aria-label="Default select example" name="Lessons" itemid="@item.BrandID" disabled>
+                        <select class="form-select" name="Brands" itemid="@item.BrandID" disabled>
                             @foreach (var items in item.Brands)
                             {
-                                <option value="@items.ID">@items.BrandName</option>
+                                @if (item.BrandID == items.ID)
+                                {
+                                    <option value="@items.ID">@items.BrandName</option>
+                                }                                
                             }
                         </select><br />
                     </td>
+           
 
-                </tr>
-            <td><a asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" asp-route-id="@item.DepartmentID" class="btn btn-success">Envanter Ekle</a></td>
-          
+                </tr>          
             }
         </tbody>
     </table>

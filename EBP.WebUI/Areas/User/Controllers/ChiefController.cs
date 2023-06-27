@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EBP.WebUI.Areas.User.Controllers
 {
@@ -59,15 +60,49 @@ namespace EBP.WebUI.Areas.User.Controllers
                 {
                     record.Brands=_brandDb.GetAllRecords();
                     inventory.Add(record); 
-
                 }
-            }
-            
+            }            
             return View(inventory);
         }
-        public IActionResult InventoryAdd(int departmentId)
+        public IActionResult InventoryAdd()
         {
-            return View(_inventoryDb.GetRecord(x=>x.DepartmentID==departmentId));
+            var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
+            var personelId = _userDb.GetById(id);
+            var result = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
+            var inventory=_inventoryDb.GetRecord(x=>x.DepartmentID==result.DepartmentID);
+
+            var record = new Inventory()
+            {
+                DepartmentID=result.DepartmentID,
+                Brands =_brandDb.GetAllRecords()
+            };
+            return View(record);
+        }
+        [HttpPost]
+        public IActionResult InventoryAdd(Inventory s,int BrandID)
+        {
+            var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
+            var personelId = _userDb.GetById(id);
+            var personelInfo = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
+            var invenrtory=_inventoryDb.GetRecord(x=>x.DepartmentID==personelInfo.DepartmentID);
+
+                if (s != null)
+                {
+                    var record = new Inventory()
+                    {
+                        MaterialCode=s.MaterialCode,
+                        MaterialTypeName=s.MaterialTypeName,
+                        Count=s.Count,
+                        DepartmentID=s.DepartmentID,   
+                        BrandID=BrandID
+                    };
+
+                    return _inventoryDb.Add(record) ? RedirectToAction("InventoryList") : View();
+                }
+
+                return View("Index");         
+
+           
         }
     }
 }

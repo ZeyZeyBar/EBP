@@ -1,4 +1,4 @@
-﻿@model PersonelDepartmentInventoryDto
+﻿@model Inventory
 @{
     ViewData["Title"] = "InventoryAdd";
     Layout = "~/Areas/User/Views/Shared/_ChiefLayout.cshtml";
@@ -7,16 +7,7 @@
 <h1>Envanter Ekle</h1>
 
 <form asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" method="post">
-@*    <input type="hidden" name="DepartmentId" value="@Model.DepartmentId" />
-    <input type="hidden" name="BrandId" value="@Model.BrandId" />*@
-
-    <label for="departmentName">Departman</label><br />
-    <select class="form-select" aria-label="Default select example" name="Departments" itemid="@Model.DepartmentId" disabled>
-        @foreach (var item in Model.Departments)
-        {
-            <option value="@item.ID">@item.DepartmentName</option>
-        }
-    </select><br />
+    <input type="hidden" name="DepartmentID" value="@Model.DepartmentID" /> 
 
     <label for="materialName">Malzeme Cinsi</label> <br />
     <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName"  /><br />
@@ -28,12 +19,12 @@
     <input type="number" name="Count" value="@Model.Count"  /><br />
 
     <label for="materialBrand">Malzeme Markası</label><br />
-    <select class="form-select" aria-label="Default select example" name="Brands" itemid="@Model.BrandId" >
+    <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID" >
         @foreach (var item in Model.Brands)
         {
             <option value="@item.ID">@item.BrandName</option>
         }
     </select><br />
 
-    
+    <input type="submit" value="Kaydet" />
 </form>
