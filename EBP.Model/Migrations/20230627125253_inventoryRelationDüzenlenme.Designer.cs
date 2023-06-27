@@ -4,14 +4,16 @@ using EBP.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EBP.Model.Migrations
 {
     [DbContext(typeof(EBPContext))]
-    partial class EBPContextModelSnapshot : ModelSnapshot
+    [Migration("20230627125253_inventoryRelationDüzenlenme")]
+    partial class inventoryRelationDüzenlenme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
