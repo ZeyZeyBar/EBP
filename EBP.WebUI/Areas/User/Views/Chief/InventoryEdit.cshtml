@@ -1,0 +1,31 @@
+﻿@model Inventory
+@{
+    ViewData["Title"] = "InventoryEdit";
+    Layout = "~/Areas/User/Views/Shared/_ChiefLayout.cshtml";
+}
+
+<h1>Envanter Düzenle</h1>
+
+
+<form asp-area="User" asp-controller="Chief" asp-action="InventoryEdit" method="post">
+    <input type="hidden" name="DepartmentId" value="@Model.DepartmentID" />
+
+    <label for="materialName">Malzeme Cinsi</label> <br />
+    <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName" /><br />
+
+    <label for="materialCode">Malzeme Kodu</label> <br />
+    <input type="text" name="MaterialCode" value="@Model.MaterialCode" /><br />
+
+    <label for="materialCount">Malzeme Miktarı</label> <br />
+    <input type="number" name="Count" value="@Model.Count" /><br />
+
+    <label for="materialBrand">Malzeme Markası</label><br />
+    <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID">
+        @foreach (var item in Model.Brands)
+        {
+            <option value="@item.ID">@item.BrandName</option>
+        }
+    </select><br />
+
+    <input type="submit" value="Kaydet" />
+</form>

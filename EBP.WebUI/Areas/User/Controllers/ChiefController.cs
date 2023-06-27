@@ -100,9 +100,48 @@ namespace EBP.WebUI.Areas.User.Controllers
                     return _inventoryDb.Add(record) ? RedirectToAction("InventoryList") : View();
                 }
 
-                return View("Index");         
-
-           
+                return View("Index");
         }
+
+        public IActionResult InventoryEdit(int id)
+        {
+            var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
+            var personelId = _userDb.GetById(userId);
+            var personelInfo = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
+            var inventory = _inventoryDb.GetRecord(x => x.ID == id);
+
+            if (inventory != null)
+            {
+                var record = new Inventory()
+                {
+                    MaterialTypeName=inventory.MaterialTypeName,
+                    MaterialCode=inventory.MaterialCode,
+                    Count=inventory.Count,
+                    DepartmentID=inventory.DepartmentID,
+                    BrandID =inventory.BrandID,
+                    Brands=_brandDb.GetAllRecords()
+                };
+
+                return View(record);
+            }
+            ViewBag.InventoryError = "Güncellenecek kaydınız bulunamadı.";
+            return View();
+        }
+        [HttpPost]
+        public IActionResult InventoryEdit(Inventory s)
+        {
+            var record = _inventoryDb.GetRecord(x => x.DepartmentID == s.DepartmentID  && x.ID==s.ID);
+            if (s != null)
+            {
+                record.MaterialCode = s.MaterialCode;
+                record.MaterialTypeName = s.MaterialTypeName;
+                record.Count = s.Count;
+                record.BrandID=s.BrandID;
+
+                return _inventoryDb.Update(record) ? RedirectToAction("InventoryList") : View();
+            }
+            return View();
+        }
+
     }
 }
