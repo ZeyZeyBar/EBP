@@ -79,5 +79,50 @@ namespace EBP.WebUI.Areas.User.Controllers
         {
             return _departmentDb.Delete(id) ? View("DepartmantList", _departmentDb.GetAllRecords()) : View();
         }
+
+        public IActionResult BrandList()
+        {
+            return View(_brandDb.GetAllRecords());
+        }
+
+        public IActionResult BrandAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BrandAdd(Brand brand) 
+        {
+            if (brand.BrandName != null)
+            {
+                return _brandDb.Add(brand) ? View("BrandList", _brandDb.GetAllRecords()) : View();
+            }
+
+            ViewBag.BrandAddError = "Malzeme Tipi Adını Boş Geçemezsiniz";
+            return View();
+        }
+
+        public IActionResult BrandUpdate(int id)
+        {
+            return View(_brandDb.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult BrandUpdate(Brand brand)
+        {
+            if (brand.BrandName != null)
+            {
+                return _brandDb.Update(brand) ? View("BrandList", _brandDb.GetAllRecords()) : View();
+            }
+            ViewBag.BrandUpdateError = "Malzeme Tipi Adını Giriniz.";
+            return View();
+        }
+        public IActionResult BrandDelete(int id)
+        {
+            return _brandDb.Delete(id) ? View("BrandList", _brandDb.GetAllRecords()) : View();
+        }
+
     }
+
+
 }
