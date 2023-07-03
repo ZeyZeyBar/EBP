@@ -55,28 +55,52 @@ namespace EBP.WebUI.Controllers
             }
             else if (lvm.LoginType == 2)//chief
             {
-				var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.UserLastName == lvm.Surname);
-				if (result != null)
-				{
-					// claims(talepler)
-					var claims = new List<Claim>()
-					{
-						new Claim("ID", result.ID.ToString()),
-						new Claim("LoginType", lvm.LoginType.ToString()),
-						new Claim(ClaimTypes.Name, result.UserName),
+                var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.UserLastName == lvm.Surname);
+                if (result != null)
+                {
+                    // claims(talepler)
+                    var claims = new List<Claim>()
+                    {
+                        new Claim("ID", result.ID.ToString()),
+                        new Claim("LoginType", lvm.LoginType.ToString()),
+                        new Claim(ClaimTypes.Name, result.UserName),
 
-						new Claim(ClaimTypes.Surname, result.UserLastName),
-						new Claim(ClaimTypes.Role,result.RolType)
-					};
+                        new Claim(ClaimTypes.Surname, result.UserLastName),
+                        new Claim(ClaimTypes.Role,result.RolType)
+                    };
 
 
-					var user = new ClaimsIdentity(claims, "Login");
-					ClaimsPrincipal principal = new ClaimsPrincipal(user);
+                    var user = new ClaimsIdentity(claims, "Login");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(user);
 
-					await HttpContext.SignInAsync(principal);
-					return RedirectToAction("Index", "Chief", new { area = "User" });
-				}
-			}
+                    await HttpContext.SignInAsync(principal);
+                    return RedirectToAction("Index", "Chief", new { area = "User" });
+                }
+            }
+            else if (lvm.LoginType == 3)//admin
+            {
+                var result = _userDb.GetRecord(x => x.UserName == lvm.Name && x.UserLastName == lvm.Surname);
+                if (result != null)
+                {
+                    // claims(talepler)
+                    var claims = new List<Claim>()
+                    {
+                        new Claim("ID", result.ID.ToString()),
+                        new Claim("LoginType", lvm.LoginType.ToString()),
+                        new Claim(ClaimTypes.Name, result.UserName),
+
+                        new Claim(ClaimTypes.Surname, result.UserLastName),
+                        new Claim(ClaimTypes.Role,result.RolType)
+                    };
+
+
+                    var user = new ClaimsIdentity(claims, "Login");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(user);
+
+                    await HttpContext.SignInAsync(principal);
+                    return RedirectToAction("Index", "Admin", new { area = "User" });
+                }               
+            }
             return View();
         }
         public async Task<IActionResult> Logout()

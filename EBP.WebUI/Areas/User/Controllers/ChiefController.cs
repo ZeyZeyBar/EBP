@@ -3,11 +3,8 @@ using EBP.Model.Entities;
 using EBP.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EBP.WebUI.Areas.User.Controllers
 {
