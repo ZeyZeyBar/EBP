@@ -1,0 +1,23 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "DepartmentUpdate";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Departman Güncelle</h1>
+
+
+@if (ViewBag.DepartmentUpdateError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.DepartmentUpdateError
+    </div>
+}
+else
+{
+    <form asp-area="User" asp-controller="Admin" asp-action="DepartmentUpdate" method="post">
+        <input type="hidden" name="ID" value="@Model.ID" />
+        <input type="text" name="DepartmentName" value="@Model.DepartmentName" placeholder="Ders Adı Giriniz" /><br /><br />
+        <input type="submit" value="Güncelle" class="btn btn-success" />
+    </form>
+}
