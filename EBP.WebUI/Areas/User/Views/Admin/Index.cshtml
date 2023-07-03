@@ -1,0 +1,18 @@
+﻿@model AdminDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Admin Profil Sayfası</h1>
+
+
+@if (TempData["WrongAdminError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        TempData["WrongAdminError"]
+    </div>
+}
+<br />
+<br />
+@Model.Name &nbsp; @Model.Surname &nbsp; @Model.DepartmentName

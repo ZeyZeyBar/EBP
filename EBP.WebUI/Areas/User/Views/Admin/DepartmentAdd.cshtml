@@ -1,0 +1,22 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "DepartmentAdd";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Departman Ekle</h1>
+
+@if (ViewBag.DepartmentAddError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.DepartmentAddError
+    </div>
+}
+
+
+<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
+    <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
+   
+   
+    <input type="submit" value="Kaydet" class="btn btn-success" />
+</form>
