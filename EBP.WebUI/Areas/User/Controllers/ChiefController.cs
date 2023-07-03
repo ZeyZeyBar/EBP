@@ -11,16 +11,16 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EBP.WebUI.Areas.User.Controllers
 {
-    [Authorize] 
+    [Authorize]
     [Area("User")]
     public class ChiefController : Controller
     {
-		private readonly ICoreService<PersonelUser> _userDb;
-		private readonly ICoreService<Personel> _personelDb;
-		private readonly ICoreService<Department> _departmentDb;
-		private readonly ICoreService<Inventory> _inventoryDb;
-		private readonly ICoreService<Brand> _brandDb;
-		public ChiefController(ICoreService<PersonelUser> userDb, ICoreService<Department> departmentDb, ICoreService<Inventory> inventoryDb, ICoreService<Personel> personelDb, ICoreService<Brand> brandDb)
+        private readonly ICoreService<PersonelUser> _userDb;
+        private readonly ICoreService<Personel> _personelDb;
+        private readonly ICoreService<Department> _departmentDb;
+        private readonly ICoreService<Inventory> _inventoryDb;
+        private readonly ICoreService<Brand> _brandDb;
+        public ChiefController(ICoreService<PersonelUser> userDb, ICoreService<Department> departmentDb, ICoreService<Inventory> inventoryDb, ICoreService<Personel> personelDb, ICoreService<Brand> brandDb)
         {
             _userDb = userDb;
             _personelDb = personelDb;
@@ -28,19 +28,19 @@ namespace EBP.WebUI.Areas.User.Controllers
             _inventoryDb = inventoryDb;
             _brandDb = brandDb;
         }
-		public IActionResult Index()
+        public IActionResult Index()
         {
-			var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
-			var personelId = _userDb.GetById(id);
-			var result = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
+            var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
+            var personelId = _userDb.GetById(id);
+            var result = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
 
-			var record = new ChiefDto()
-			{
-				Name = result.PersonelName,
-				Surname = result.PersonelLastName,
-				DepartmentName=_departmentDb.GetById(result.DepartmentID).DepartmentName
-			};
-			return View(record);
+            var record = new ChiefDto()
+            {
+                Name = result.PersonelName,
+                Surname = result.PersonelLastName,
+                DepartmentName = _departmentDb.GetById(result.DepartmentID).DepartmentName
+            };
+            return View(record);
         }
 
         public IActionResult PersonelList()
@@ -51,17 +51,17 @@ namespace EBP.WebUI.Areas.User.Controllers
         {
             var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
             var personelId = _userDb.GetById(id);
-            var personelInfo=_personelDb.GetRecord(x=>x.ID == personelId.PersonelID);
+            var personelInfo = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
             var query = _inventoryDb.GetAllRecords();
             List<Inventory> inventory = new List<Inventory>();
             foreach (var record in query)
             {
                 if (personelInfo.DepartmentID == record.DepartmentID)
                 {
-                    record.Brands=_brandDb.GetAllRecords();
-                    inventory.Add(record); 
+                    record.Brands = _brandDb.GetAllRecords();
+                    inventory.Add(record);
                 }
-            }            
+            }
             return View(inventory);
         }
         public IActionResult InventoryAdd()
@@ -69,38 +69,38 @@ namespace EBP.WebUI.Areas.User.Controllers
             var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
             var personelId = _userDb.GetById(id);
             var result = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
-            var inventory=_inventoryDb.GetRecord(x=>x.DepartmentID==result.DepartmentID);
+            var inventory = _inventoryDb.GetRecord(x => x.DepartmentID == result.DepartmentID);
 
             var record = new Inventory()
             {
-                DepartmentID=result.DepartmentID,
-                Brands =_brandDb.GetAllRecords()
+                DepartmentID = result.DepartmentID,
+                Brands = _brandDb.GetAllRecords()
             };
             return View(record);
         }
         [HttpPost]
-        public IActionResult InventoryAdd(Inventory s,int BrandID)
+        public IActionResult InventoryAdd(Inventory s, int BrandID)
         {
             var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
             var personelId = _userDb.GetById(id);
             var personelInfo = _personelDb.GetRecord(x => x.ID == personelId.PersonelID);
-            var invenrtory=_inventoryDb.GetRecord(x=>x.DepartmentID==personelInfo.DepartmentID);
+            var invenrtory = _inventoryDb.GetRecord(x => x.DepartmentID == personelInfo.DepartmentID);
 
-                if (s != null)
+            if (s != null)
+            {
+                var record = new Inventory()
                 {
-                    var record = new Inventory()
-                    {
-                        MaterialCode=s.MaterialCode,
-                        MaterialTypeName=s.MaterialTypeName,
-                        Count=s.Count,
-                        DepartmentID=s.DepartmentID,   
-                        BrandID=BrandID
-                    };
+                    MaterialCode = s.MaterialCode,
+                    MaterialTypeName = s.MaterialTypeName,
+                    Count = s.Count,
+                    DepartmentID = s.DepartmentID,
+                    BrandID = BrandID
+                };
 
-                    return _inventoryDb.Add(record) ? RedirectToAction("InventoryList") : View();
-                }
+                return _inventoryDb.Add(record) ? RedirectToAction("InventoryList") : View();
+            }
 
-                return View("Index");
+            return View("Index");
         }
 
         public IActionResult InventoryEdit(int id)
@@ -114,12 +114,12 @@ namespace EBP.WebUI.Areas.User.Controllers
             {
                 var record = new Inventory()
                 {
-                    MaterialTypeName=inventory.MaterialTypeName,
-                    MaterialCode=inventory.MaterialCode,
-                    Count=inventory.Count,
-                    DepartmentID=inventory.DepartmentID,
-                    BrandID =inventory.BrandID,
-                    Brands=_brandDb.GetAllRecords()
+                    MaterialTypeName = inventory.MaterialTypeName,
+                    MaterialCode = inventory.MaterialCode,
+                    Count = inventory.Count,
+                    DepartmentID = inventory.DepartmentID,
+                    BrandID = inventory.BrandID,
+                    Brands = _brandDb.GetAllRecords()
                 };
 
                 return View(record);
@@ -130,18 +130,28 @@ namespace EBP.WebUI.Areas.User.Controllers
         [HttpPost]
         public IActionResult InventoryEdit(Inventory s)
         {
-            var record = _inventoryDb.GetRecord(x => x.DepartmentID == s.DepartmentID  && x.ID==s.ID);
+            var record = _inventoryDb.GetRecord(x => x.DepartmentID == s.DepartmentID && x.ID == s.ID);
             if (s != null)
             {
                 record.MaterialCode = s.MaterialCode;
                 record.MaterialTypeName = s.MaterialTypeName;
                 record.Count = s.Count;
-                record.BrandID=s.BrandID;
+                record.BrandID = s.BrandID;
 
                 return _inventoryDb.Update(record) ? RedirectToAction("InventoryList") : View();
             }
             return View();
         }
 
+    //    [HttpDelete]
+        public IActionResult InventoryDelete(int id)
+        {
+            var record = _inventoryDb.GetRecord(x => x.ID == id);
+            if (record != null)
+            {
+                return _inventoryDb.Delete(id) ? RedirectToAction("InventoryList") : View();
+            }
+            return View();
+        }
     }
 }
