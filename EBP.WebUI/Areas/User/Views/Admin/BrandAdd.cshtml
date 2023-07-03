@@ -1,0 +1,23 @@
+﻿@model Brand
+@{
+    ViewData["Title"] = "BrandAdd";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Malzeme Tipi Ekle</h1>
+
+
+@if (ViewBag.BrandAddError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.BrandAddError
+    </div>
+}
+
+
+<form asp-area="User" asp-controller="Admin" asp-action="BrandAdd" method="post">
+    <input type="text" name="BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+
+
+    <input type="submit" value="Kaydet" class="btn btn-success" />
+</form>
