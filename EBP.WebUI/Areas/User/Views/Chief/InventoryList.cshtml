@@ -25,6 +25,7 @@ else
                 <th scope="col">Miktarı</th>
                 <th scope="col">Markası</th>
                 <th scope="col">Düzenleme</th>
+                <th scope="col">Silme</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@ else
                         </select><br />
                     </td>
                     <td><a asp-area="User" asp-controller="Chief" asp-action="InventoryEdit" asp-route-id="@item.ID" class="btn btn-warning">Envanter Düzenle</a></td>
+                    <td><a asp-area="User" asp-controller="Chief" asp-action="InventoryDelete" asp-route-id="@item.ID" class="btn btn-danger">Envanter Silme</a></td>
 
                 </tr>          
             }
