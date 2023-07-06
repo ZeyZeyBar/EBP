@@ -3,7 +3,9 @@ using EBP.Model.Entities;
 using EBP.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EBP.WebUI.Areas.User.Controllers
 {
@@ -122,6 +124,103 @@ namespace EBP.WebUI.Areas.User.Controllers
             return _brandDb.Delete(id) ? View("BrandList", _brandDb.GetAllRecords()) : View();
         }
 
+        public IActionResult PersonelList()
+        {
+            var personelList=_personelDb.GetAllRecords();
+            List<PersonelListDto> personelListDtos = new List<PersonelListDto>();
+            foreach (var item in personelList)
+            {
+                var personels=new PersonelListDto();
+                var department = _departmentDb.GetById(item.DepartmentID);
+                if (item.DepartmentID==department.ID)
+                {
+                    personels.ID = item.ID;
+                    personels.RegisterNo = item.RegisterNo;
+                    personels.PersonelName = item.PersonelName;
+                    personels.PersonelLastName = item.PersonelLastName;
+                    personels.DepartmentNAME = department.DepartmentName;
+                    personels.PersonelAddress = item.PersonelAddress;
+                    personels.PersonelBirthDay = item.PersonelBirthDay;
+                    personelListDtos.Add(personels);
+                }                
+            }  
+            return View(personelListDtos);
+        }
+        public IActionResult PersonelAdd()
+        {
+            var newPersonel = new PersonelListDto()
+            {
+               Department=_departmentDb.GetAllRecords()
+            };
+            return View(newPersonel);
+        }
+
+        [HttpPost]
+        public IActionResult PersonelAdd(PersonelListDto personel)
+        {
+            if(personel.PersonelName != null && personel.PersonelLastName!=null)
+            {
+                var newPersonel = new Personel()
+                {
+                    RegisterNo = personel.RegisterNo,
+                    PersonelName = personel.PersonelName,
+                    PersonelLastName = personel.PersonelLastName,
+                    PersonelAddress = personel.PersonelAddress,
+                    PersonelBirthDay = personel.PersonelBirthDay,
+                    DepartmentID = _departmentDb.GetRecord(x => x.ID == personel.DepartmentID).ID
+                };
+               return _personelDb.Add(newPersonel) ? RedirectToAction("PersonelList") : View();
+            }
+            return View();
+        }
+
+        public IActionResult PersonelUpdate(int id)
+        {
+            var personel=_personelDb.GetById(id);
+            if(personel != null)
+            {
+                var record = new PersonelListDto()
+                {
+                    ID= id,
+                    RegisterNo = personel.RegisterNo,
+                    PersonelName = personel.PersonelName,
+                    PersonelLastName = personel.PersonelLastName,
+                    PersonelAddress = personel.PersonelAddress,
+                    PersonelBirthDay = personel.PersonelBirthDay,
+                    DepartmentID = _departmentDb.GetById(personel.DepartmentID).ID,
+                    Department=_departmentDb.GetAllRecords(),
+                    DepartmentNAME=_departmentDb.GetRecord(x=>x.ID==personel.DepartmentID).DepartmentName
+                    
+                };
+                return View(record);
+            }
+            ViewBag.PersonelError = "Güncellenecek kaydınız bulunamadı.";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult PersonelUpdate(PersonelListDto personel)
+        {
+            var record = _personelDb.GetById(personel.ID);
+            if (record!=null)
+            {
+                record.ID = personel.ID;
+                record.RegisterNo = personel.RegisterNo;
+                record.PersonelName = personel.PersonelName;
+                record.PersonelLastName = personel.PersonelLastName;
+                record.PersonelBirthDay = personel.PersonelBirthDay;
+                record.PersonelAddress = personel.PersonelAddress;
+                record.DepartmentID = _departmentDb.GetRecord(x => x.ID == personel.DepartmentID).ID;
+                
+                return _personelDb.Update(record) ? RedirectToAction("PersonelList") : View();
+            }
+            return View();
+        }
+
+        public IActionResult PersonelDelete(int id)
+        {
+            return _personelDb.Delete(id) ? RedirectToAction("PersonelList") : View();
+        }
     }
 
 

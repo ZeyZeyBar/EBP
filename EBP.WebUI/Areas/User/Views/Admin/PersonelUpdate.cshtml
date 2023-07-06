@@ -1,0 +1,47 @@
+﻿@model PersonelListDto
+@{
+    ViewData["Title"] = "PersonelUpdate";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Personel Bilgisini Güncelle</h1>
+
+@if (ViewBag.PersonelError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.PersonelError
+    </div>
+}
+else
+{
+
+<form asp-area="User" asp-controller="Admin" asp-action="PersonelUpdate" method="post">
+    <input type="hidden" name="ID" value="@Model.ID" />
+
+    <label for="registerNo">Kayıt Numarası</label> <br />
+    <input type="number" name="RegisterNo" value="@Model.RegisterNo" /><br />
+
+    <label for="personelName">Personel Adı</label> <br />
+    <input type="text" name="PersonelName" value="@Model.PersonelName"/><br />
+
+    <label for="personelLastName">Personel Soyadı</label> <br />
+    <input type="text" name="PersonelLastName" value="@Model.PersonelLastName" /><br />
+
+
+    <label for="personelAddress">Personel Adresi</label> <br />
+    <input type="text" name="PersonelAddress" value="@Model.PersonelAddress" /><br />
+
+    <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
+    <input type="date" name="PersonelBirthDay"  value="@Model.PersonelBirthDay"/><br />
+
+    <label for="department">Departmanı</label><br />
+        <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID" >
+        @foreach (var item in Model.Department)
+        {
+            <option value="@item.ID">@item.DepartmentName</option>
+        }
+    </select><br />
+
+    <input type="submit" value="Kaydet" />
+</form>
+}
