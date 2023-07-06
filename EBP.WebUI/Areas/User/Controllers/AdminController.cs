@@ -221,6 +221,95 @@ namespace EBP.WebUI.Areas.User.Controllers
         {
             return _personelDb.Delete(id) ? RedirectToAction("PersonelList") : View();
         }
+
+        public IActionResult UserList()
+        {
+            var personelList = _userDb.GetAllRecords();
+            List<RolDto> personelListDtos = new List<RolDto>();
+         
+            foreach (var item in personelList)
+            {
+                var personels = new RolDto();
+                var user = _personelDb.GetById(item.PersonelID);
+              
+                if (item.PersonelID == user.ID)
+                {
+                    personels.ID = item.ID;                    
+                    personels.UserName = item.UserName;
+                    personels.LastName = item.UserLastName;
+                    personels.PersonelID = item.PersonelID;
+                    personels.PersonelFullName = user.PersonelName + " " + user.PersonelLastName;
+                    personels.RolTypes = item.RolType;
+                    personelListDtos.Add(personels);
+                }
+            }
+            return View(personelListDtos);
+        }
+        public IActionResult UserAdd()
+        {
+            var newPersonel = new RolDto()
+            {
+                Personels = _personelDb.GetAllRecords()
+            };
+            return View(newPersonel);
+        }
+        [HttpPost]
+        public IActionResult UserAdd(RolDto rolDto)
+        {
+            if (rolDto.UserName != null && rolDto.LastName != null)
+            {
+                var newPersonel = new PersonelUser()
+                {
+                    UserName= rolDto.UserName,
+                    UserLastName= rolDto.LastName,
+                    RolType=rolDto.RolTypes,
+                    PersonelID= _personelDb.GetRecord(x => x.ID == rolDto.PersonelID).ID
+                };
+                return _userDb.Add(newPersonel) ? RedirectToAction("UserList") : View();
+            }
+            return View();
+        }
+        public IActionResult UserUpdate(int id)
+        {
+            var personel = _userDb.GetById(id);
+            if (personel != null)
+            {
+                var record = new RolDto()
+                {
+                    ID = id,
+                    UserName = personel.UserName,
+                    LastName=personel.UserLastName,
+                    RolTypes=personel.RolType,              
+                    Personels=_personelDb.GetAllRecords(),
+                    PersonelID = _personelDb.GetById(personel.PersonelID).ID,
+                    PersonelFullName = _personelDb.GetRecord(x => x.ID == personel.PersonelID).PersonelName + " " + _personelDb.GetRecord(x => x.ID == personel.PersonelID).PersonelLastName
+                };
+                return View(record);
+            }
+            ViewBag.UserError = "Güncellenecek kaydınız bulunamadı.";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UserUpdate(RolDto personel)
+        {
+            var record = _userDb.GetById(personel.ID);
+            if (record != null)
+            {
+                record.ID = personel.ID;
+                record.UserName = personel.UserName;
+                record.UserLastName = personel.LastName;
+                record.RolType = personel.RolTypes;               
+                record.PersonelID = _personelDb.GetRecord(x => x.ID == personel.PersonelID).ID;
+
+                return _userDb.Update(record) ? RedirectToAction("UserList") : View();
+            }
+            return View();
+        }
+        public IActionResult UserDelete(int id)
+        {
+            return _userDb.Delete(id) ? RedirectToAction("UserList") : View();
+        }
     }
 
 

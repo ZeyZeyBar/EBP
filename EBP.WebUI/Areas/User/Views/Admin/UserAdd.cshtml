@@ -1,0 +1,34 @@
+﻿@model RolDto
+@{
+    ViewData["Title"] = "UserAdd";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Uygulama Kullanıcısı Ekle</h1>
+
+<form asp-area="User" asp-controller="Admin" asp-action="UserAdd" method="post">
+
+
+    <label for="userName">Kullanıcı Adı</label> <br />
+    <input type="text" name="UserName" /><br />
+
+    <label for="lastName">Kullanıcı Son Adı</label> <br />
+    <input type="text" name="LastName" /><br />
+
+    <select class="form-select" aria-label="Default select example" name="RolTypes">
+        <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+        <option value="personel">Personel</option>
+        <option value="sef">Şef</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <label for="department">Personel</label><br />
+    <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+        @foreach (var item in Model.Personels)
+        {
+            <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+        }
+    </select><br />
+
+    <input type="submit" value="Kaydet" />
+</form>
