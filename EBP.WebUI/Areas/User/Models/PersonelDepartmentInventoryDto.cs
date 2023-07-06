@@ -11,6 +11,7 @@ namespace EBP.WebUI.Areas.User.Models
         public string MaterialTypeName { get; set; }
         public string MaterialCode { get; set; }
         public int Count { get; set; }
+        public string BrandName { get; set; }
         public List<Brand> Brands { get; set; }
         public List<Personel> Personels { get; set; }
         public List<Department> Departments { get; set; }

@@ -16,35 +16,48 @@ else
 {
 
     <form asp-area="User" asp-controller="Admin" asp-action="UserUpdate" method="post">
-        <input type="hidden" name="ID" value="@Model.ID" />
+        <div class="form-group">
+            <input type="hidden" name="ID" value="@Model.ID" />
+        </div>
 
-        <label for="userName">Kullanıcı Adı</label> <br />
-        <input type="text" name="UserName" value="@Model.UserName" /><br />
+        <div class="form-group">
+            <label for="userName">Kullanıcı Adı</label> <br />
+            <input type="text" name="UserName" value="@Model.UserName" />
+        </div>
 
-        <label for="LastName">Kullanıcı Son Adı</label> <br />
-        <input type="text" name="LastName" value="@Model.LastName" /><br />
+        <div class="form-group">
+            <label for="LastName">Kullanıcı Son Adı</label> <br />
+            <input type="text" name="LastName" value="@Model.LastName" />
+        </div>
+   
+        <div class="form-group">
+            <label for="personelFullName">Personel Tüm Ad</label> <br />
+            <input type="text" name="PersonelFullName" value="@Model.PersonelFullName" disabled />
+        </div>
 
-        <label for="personelFullName">Personel Tüm Ad</label> <br />
-        <input type="text" name="PersonelFullName" value="@Model.PersonelFullName" disabled /><br />
+        <div class="form-group">
+            <label for="personels">Personel</label><br />
+            <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+                <option value="@Model.PersonelID" selected>@Model.PersonelFullName</option>
+                @foreach (var item in Model.Personels)
+                {
 
-        <label for="personels">Personel</label><br />
-        <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
-            <option value="@Model.PersonelID" selected>@Model.PersonelFullName</option>
-            @foreach (var item in Model.Personels)
-            {
-            
-                <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
-            }
-        </select><br />
+                    <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+                }
+            </select>
+        </div>
 
-        <select class="form-select" aria-label="Default select example" name="RolTypes">
-            <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
-            <option value="personel">Personel</option>
-            <option value="sef">Şef</option>
-            <option value="admin">Admin</option>
-        </select>
+        <div class="from-group">
+            <select class="form-select" aria-label="Default select example" name="RolTypes">
+                <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+                <option value="personel">Personel</option>
+                <option value="sef">Şef</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
 
+        <br />
 
-        <input type="submit" value="Kaydet" />
+        <button type="submit" class="btn btn-primary">Kaydet</button>
     </form>
 }

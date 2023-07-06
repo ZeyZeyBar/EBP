@@ -7,24 +7,35 @@
 <h1>Envanter Ekle</h1>
 
 <form asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" method="post">
-    <input type="hidden" name="DepartmentID" value="@Model.DepartmentID" /> 
+    <div class="from-group">
+        <input type="hidden" name="DepartmentID" value="@Model.DepartmentID" />
+    </div>
+    
+    <div class="form-group">
+        <label for="materialName">Malzeme Cinsi</label> <br />
+        <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName" />
+    </div>
 
-    <label for="materialName">Malzeme Cinsi</label> <br />
-    <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName"  /><br />
+    <div class="form-group">
+        <label for="materialCode">Malzeme Kodu</label> <br />
+        <input type="text" name="MaterialCode" value="@Model.MaterialCode" />
+    </div>
 
-    <label for="materialCode">Malzeme Kodu</label> <br />
-    <input type="text" name="MaterialCode" value="@Model.MaterialCode"  /><br />
+    <div class="form-group">
+        <label for="materialCount">Malzeme Miktarı</label> <br />
+        <input type="number" name="Count" value="@Model.Count" />
+    </div>
 
-    <label for="materialCount">Malzeme Miktarı</label> <br />
-    <input type="number" name="Count" value="@Model.Count"  /><br />
+   <div class="form-group">
+        <label for="materialBrand">Malzeme Markası</label><br />
+        <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID">
+            @foreach (var item in Model.Brands)
+            {
+                <option value="@item.ID">@item.BrandName</option>
+            }
+        </select>
+    </div> 
+    <br />
 
-    <label for="materialBrand">Malzeme Markası</label><br />
-    <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID" >
-        @foreach (var item in Model.Brands)
-        {
-            <option value="@item.ID">@item.BrandName</option>
-        }
-    </select><br />
-
-    <input type="submit" value="Kaydet" />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

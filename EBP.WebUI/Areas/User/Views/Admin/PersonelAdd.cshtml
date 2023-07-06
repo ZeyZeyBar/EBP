@@ -5,34 +5,49 @@
 }
 
 <h1>Personel Ekle</h1>
-
+<br />
 
 <form asp-area="User" asp-controller="Admin" asp-action="PersonelAdd" method="post">
-   
+    <div class="form-group">
 
-    <label for="registerNo">Kayıt Numarası</label> <br />
-    <input type="number" name="RegisterNo"  /><br />
+    </div>
+        <div class="form-group" >
+            <label for="registerNo">Kayıt Numarası</label> <br />
 
-    <label for="personelName">Personel Adı</label> <br />
-    <input type="text" name="PersonelName"  /><br />
+            <input type="number" name="RegisterNo" />
+        </div>
 
-    <label for="personelLastName">Personel Soyadı</label> <br />
-    <input type="text" name="PersonelLastName" /><br />
+        <div class="form-group ">
+        <label for="personelName">Personel Adı</label><br />
+            <input type="text" name="PersonelName" />
+        </div>
 
+        <div class="form-group">
+        <label for="personelLastName">Personel Soyadı</label> <br />
+            <input type="text" name="PersonelLastName" />
+        </div>
 
-    <label for="personelAddress">Personel Adresi</label> <br />
-    <input type="text" name="PersonelAddress"  /><br />
+        <div class="form-group">
+        <label for="personelAddress">Personel Adresi</label> <br />
+            <input type="text" name="PersonelAddress" />
+        </div>
 
-    <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
-    <input type="date" name="PersonelBirthDay"  /><br />
+        <div class="form-group">
+        <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
+            <input type="date" name="PersonelBirthDay" />
+        </div>
 
-   <label for="department">Departmanı</label><br />
-    <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
-        @foreach (var item in Model.Department)
-        {
-            <option value="@item.ID">@item.DepartmentName</option>
-        }
-    </select><br />
+        <div class="form-group">
 
-    <input type="submit" value="Kaydet" />
+        <label for="department">Departmanı</label><br />
+            <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
+                @foreach (var item in Model.Department)
+                {
+                    <option value="@item.ID">@item.DepartmentName</option>
+                }
+            </select>           
+        </div>     
+        <br />
+  
+        <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

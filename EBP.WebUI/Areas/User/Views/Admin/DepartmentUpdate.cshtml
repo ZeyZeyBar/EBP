@@ -15,9 +15,23 @@
 }
 else
 {
-    <form asp-area="User" asp-controller="Admin" asp-action="DepartmentUpdate" method="post">
+@*    <form asp-area="User" asp-controller="Admin" asp-action="DepartmentUpdate" method="post">
         <input type="hidden" name="ID" value="@Model.ID" />
         <input type="text" name="DepartmentName" value="@Model.DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
         <input type="submit" value="Güncelle" class="btn btn-success" />
+    </form>*@
+
+    <form asp-area="User" asp-controller="Admin" asp-action="DepartmentUpdate" method="post">
+        <div class="form-group">
+            <input type="hidden" name="ID" value="@Model.ID" />
+        </div>
+        <div class="form-group">
+            <label for="brandName">Departman Adını Giriniz</label><br />
+            <br />
+
+            <input type="text" name="DepartmentName" value="@Model.DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
     </form>
 }

@@ -3,11 +3,12 @@ using EBP.Model.Entities;
 using EBP.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EBP.WebUI.Areas.User.Controllers
 {
-	[Authorize] 
+    [Authorize] 
 	[Area("User")]
 	public class PersonelController : Controller
 	{
@@ -47,20 +48,28 @@ namespace EBP.WebUI.Areas.User.Controllers
 			var id = int.Parse(User.Claims.FirstOrDefault(c => c.Type.EndsWith("ID")).Value);
             var user = _userDb.GetById(id);
             var personel = _personelDb.GetRecord(x => x.ID == user.PersonelID);
-			var result=_inventoryDb.GetRecord(x=>x.DepartmentID == personel.DepartmentID);
-			var record = new PersonelDepartmentInventoryDto()
-			{
-				BrandId = result.BrandID,
-				DepartmentId = result.DepartmentID,
-				MaterialCode = result.MaterialCode,
-				MaterialTypeName = result.MaterialTypeName,
-				Count = result.Count,
-				Brands=_brandDb.GetAllRecords(),
-				Departments=_departmentDb.GetAllRecords(),
+			var result = _inventoryDb.GetAllRecords();
+			List<PersonelDepartmentInventoryDto> personelListDtos = new List<PersonelDepartmentInventoryDto>();
+            foreach (var item in result)
+            {
+                var inventory = new PersonelDepartmentInventoryDto();
+                var personelInventory = _inventoryDb.GetRecord(x => x.DepartmentID == personel.DepartmentID);
+				var datas = _inventoryDb.GetRecord(x => x.DepartmentID == personel.DepartmentID);
 
-			};
-			return View(record);
-        }
-		
+                var  brand= _brandDb.GetById(item.BrandID);
+                if (item.DepartmentID == personelInventory.DepartmentID)
+                {
+					inventory.BrandId=item.BrandID;
+					inventory.MaterialCode=item.MaterialCode;
+					inventory.MaterialTypeName=item.MaterialTypeName;
+					inventory.BrandName = brand.BrandName;
+					inventory.Count = item.Count;
+					inventory.Brands=_brandDb.GetAllRecords();
+					inventory.Departments=_departmentDb.GetAllRecords();                
+                    personelListDtos.Add(inventory);
+                }
+            }
+            return View(personelListDtos);
+        }		
     }
 }
