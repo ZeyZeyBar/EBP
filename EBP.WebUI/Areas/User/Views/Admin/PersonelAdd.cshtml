@@ -1,0 +1,38 @@
+﻿@model PersonelListDto
+@{
+    ViewData["Title"] = "PersonelAdd";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Personel Ekle</h1>
+
+
+<form asp-area="User" asp-controller="Admin" asp-action="PersonelAdd" method="post">
+   
+
+    <label for="registerNo">Kayıt Numarası</label> <br />
+    <input type="number" name="RegisterNo"  /><br />
+
+    <label for="personelName">Personel Adı</label> <br />
+    <input type="text" name="PersonelName"  /><br />
+
+    <label for="personelLastName">Personel Soyadı</label> <br />
+    <input type="text" name="PersonelLastName" /><br />
+
+
+    <label for="personelAddress">Personel Adresi</label> <br />
+    <input type="text" name="PersonelAddress"  /><br />
+
+    <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
+    <input type="date" name="PersonelBirthDay"  /><br />
+
+   <label for="department">Departmanı</label><br />
+    <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
+        @foreach (var item in Model.Department)
+        {
+            <option value="@item.ID">@item.DepartmentName</option>
+        }
+    </select><br />
+
+    <input type="submit" value="Kaydet" />
+</form>
