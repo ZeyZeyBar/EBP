@@ -36,6 +36,7 @@ else
 
     <label for="department">Departmanı</label><br />
         <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID" >
+            <option value="@Model.DepartmentID" selected>@Model.DepartmentNAME</option>
         @foreach (var item in Model.Department)
         {
             <option value="@item.ID">@item.DepartmentName</option>

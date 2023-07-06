@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RolDto>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Uygulama Kullanıcıları Listesi</h1>
+
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger" role="alert">
+        Kayıt Bulunamadı..!
+    </div>
+}
+else
+{
+
+    <table class="table table-striped">
+        <thead>
+            <tr><a asp-area="User" asp-controller="Admin" asp-action="UserAdd" asp-route-id="@Model" class="btn btn-success">Uygulamaya Kullanıcı Ekle</a></tr>
+            <tr></tr>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Kullanıcı Adı</th>
+                <th scope="col">Kullanıcı Soyadı</th>
+                <th scope="col">Personel Adı ve Soyadı</th>
+                <th scope="col">Rolü</th>
+                <th scope="col">Düzenleme</th>
+                <th scope="col">Silme</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td>@item.UserName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.PersonelFullName</td>
+                    <td>@item.RolTypes</td>
+
+                    <td><a asp-area="User" asp-controller="Admin" asp-action="UserUpdate" asp-route-id="@item.ID" class="btn btn-warning">Kullanıcı Düzenle</a></td>
+
+
+                    <td><a asp-area="User" asp-controller="Admin" asp-action="UserDelete" asp-route-id="@item.ID" class="btn btn-danger">Kullanıcı Silme</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,50 @@
+﻿@model RolDto
+@{
+    ViewData["Title"] = "UserUpdate";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Uygulama Kullanıcısını Güncelle</h1>
+
+@if (ViewBag.UserError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.UserError
+    </div>
+}
+else
+{
+
+    <form asp-area="User" asp-controller="Admin" asp-action="UserUpdate" method="post">
+        <input type="hidden" name="ID" value="@Model.ID" />
+
+        <label for="userName">Kullanıcı Adı</label> <br />
+        <input type="text" name="UserName" value="@Model.UserName" /><br />
+
+        <label for="LastName">Kullanıcı Son Adı</label> <br />
+        <input type="text" name="LastName" value="@Model.LastName" /><br />
+
+        <label for="personelFullName">Personel Tüm Ad</label> <br />
+        <input type="text" name="PersonelFullName" value="@Model.PersonelFullName" disabled /><br />
+
+        <label for="personels">Personel</label><br />
+        <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+            <option value="@Model.PersonelID" selected>@Model.PersonelFullName</option>
+            @foreach (var item in Model.Personels)
+            {
+            
+                <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+            }
+        </select><br />
+
+        <select class="form-select" aria-label="Default select example" name="RolTypes">
+            <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+            <option value="personel">Personel</option>
+            <option value="sef">Şef</option>
+            <option value="admin">Admin</option>
+        </select>
+
+
+        <input type="submit" value="Kaydet" />
+    </form>
+}
