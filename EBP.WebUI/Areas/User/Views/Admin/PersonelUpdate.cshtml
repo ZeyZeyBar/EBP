@@ -16,33 +16,54 @@ else
 {
 
 <form asp-area="User" asp-controller="Admin" asp-action="PersonelUpdate" method="post">
-    <input type="hidden" name="ID" value="@Model.ID" />
+    <div class="form-group">
+            <input type="hidden" name="ID" value="@Model.ID" />
+    </div>
+    
+    <div class="form-group">
+       <label for="registerNo">Kayıt Numarası</label> <br />
+       <input type="number" name="RegisterNo" value="@Model.RegisterNo" />
+     </div>
+    
+     <div class="form-group">
+            <label for="registerNo">Kayıt Numarası</label> <br />
+            <input type="number" name="RegisterNo" value="@Model.RegisterNo" /><br />
+     </div>
+     <div class="form-group">
+            <label for="personelName">Personel Adı</label> <br />
+            <input type="text" name="PersonelName" value="@Model.PersonelName" />
+     </div>
 
-    <label for="registerNo">Kayıt Numarası</label> <br />
-    <input type="number" name="RegisterNo" value="@Model.RegisterNo" /><br />
+     <div class="form-group">
+            <label for="personelLastName">Personel Soyadı</label> <br />
+            <input type="text" name="PersonelLastName" value="@Model.PersonelLastName" />
+     </div>
+    
+     
+     <div class="form-group">
+            <label for="personelAddress">Personel Adresi</label> <br />
+            <input type="text" name="PersonelAddress" value="@Model.PersonelAddress" />
+     </div>
 
-    <label for="personelName">Personel Adı</label> <br />
-    <input type="text" name="PersonelName" value="@Model.PersonelName"/><br />
+   
+     <div class="form-group">
+            <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
+            <input type="date" name="PersonelBirthDay" value="@Model.PersonelBirthDay" />
+     </div>
 
-    <label for="personelLastName">Personel Soyadı</label> <br />
-    <input type="text" name="PersonelLastName" value="@Model.PersonelLastName" /><br />
+     <div class="form-group">
+            <label for="department">Departmanı</label><br />
+            <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
+                <option value="@Model.DepartmentID" selected>@Model.DepartmentNAME</option>
+                @foreach (var item in Model.Department)
+                {
+                    <option value="@item.ID">@item.DepartmentName</option>
+                }
+            </select>
+     </div>
 
+        <br />
 
-    <label for="personelAddress">Personel Adresi</label> <br />
-    <input type="text" name="PersonelAddress" value="@Model.PersonelAddress" /><br />
-
-    <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
-    <input type="date" name="PersonelBirthDay"  value="@Model.PersonelBirthDay"/><br />
-
-    <label for="department">Departmanı</label><br />
-        <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID" >
-            <option value="@Model.DepartmentID" selected>@Model.DepartmentNAME</option>
-        @foreach (var item in Model.Department)
-        {
-            <option value="@item.ID">@item.DepartmentName</option>
-        }
-    </select><br />
-
-    <input type="submit" value="Kaydet" />
+        <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>
 }

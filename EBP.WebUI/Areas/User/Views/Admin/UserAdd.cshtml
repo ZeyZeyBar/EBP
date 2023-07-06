@@ -8,27 +8,36 @@
 
 <form asp-area="User" asp-controller="Admin" asp-action="UserAdd" method="post">
 
+    <div class="form-group">
+        <label for="userName">Kullanıcı Adı</label> <br />
+        <input type="text" name="UserName" />
+    </div>
 
-    <label for="userName">Kullanıcı Adı</label> <br />
-    <input type="text" name="UserName" /><br />
+    <div class="form-group">
+        <label for="lastName">Kullanıcı Son Adı</label> <br />
+        <input type="text" name="LastName" />
+    </div>
 
-    <label for="lastName">Kullanıcı Son Adı</label> <br />
-    <input type="text" name="LastName" /><br />
+    <div class="form-group">
+        <select class="form-select" aria-label="Default select example" name="RolTypes">
+            <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+            <option value="personel">Personel</option>
+            <option value="sef">Şef</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
 
-    <select class="form-select" aria-label="Default select example" name="RolTypes">
-        <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
-        <option value="personel">Personel</option>
-        <option value="sef">Şef</option>
-        <option value="admin">Admin</option>
-    </select>
+    <div class="form-group">
+        <label for="department">Personel</label><br />
+        <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+            @foreach (var item in Model.Personels)
+            {
+                <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+            }
+        </select>
+    </div>
 
-    <label for="department">Personel</label><br />
-    <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
-        @foreach (var item in Model.Personels)
-        {
-            <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
-        }
-    </select><br />
+    <br />
 
-    <input type="submit" value="Kaydet" />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

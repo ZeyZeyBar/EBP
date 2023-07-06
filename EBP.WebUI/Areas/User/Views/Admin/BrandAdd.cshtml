@@ -16,8 +16,12 @@
 
 
 <form asp-area="User" asp-controller="Admin" asp-action="BrandAdd" method="post">
-    <input type="text" name="BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+    <div class="form-group">
+        <label for="brandName">Malzeme Tipini Giriniz</label><br />
+        <br />
 
+        <input type="text" name="BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+    </div>
 
-    <input type="submit" value="Kaydet" class="btn btn-success" />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

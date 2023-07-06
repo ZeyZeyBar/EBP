@@ -14,9 +14,20 @@
 }
 
 
-<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
+@*<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
     <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
    
    
     <input type="submit" value="Kaydet" class="btn btn-success" />
+</form>*@
+
+<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
+    <div class="form-group">
+        <label for="brandName">Departman Adını Giriniz</label><br />
+        <br />
+
+        <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>
