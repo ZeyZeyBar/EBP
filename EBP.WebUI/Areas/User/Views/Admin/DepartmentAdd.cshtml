@@ -4,7 +4,6 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Departman Ekle</h1>
 
 @if (ViewBag.DepartmentAddError != null)
 {
@@ -13,21 +12,22 @@
     </div>
 }
 
-
-@*<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
-    <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
-   
-   
-    <input type="submit" value="Kaydet" class="btn btn-success" />
-</form>*@
-
-<form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
-    <div class="form-group">
-        <label for="brandName">Departman Adını Giriniz</label><br />
-        <br />
-
-        <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Departman Ekle</h6>
     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" method="post">
+                <div class="form-group">
+                    <label for="brandName">Departman Adını Giriniz</label><br />
+                    <br />
 
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+                    <input type="text" name="DepartmentName" placeholder="Departman Adı Giriniz" /><br /><br />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

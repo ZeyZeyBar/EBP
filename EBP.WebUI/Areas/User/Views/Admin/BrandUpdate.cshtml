@@ -4,9 +4,6 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Malzeme Tipi Adı Güncelleyin</h1>
-
-
 @if (ViewBag.BrandUpdateError != null)
 {
     <div class="alert alert-danger" role="alert">
@@ -15,9 +12,19 @@
 }
 else
 {
-    <form asp-area="User" asp-controller="Admin" asp-action="BrandUpdate" method="post">
-        <input type="hidden" name="ID" value="@Model.ID" />
-        <input type="text" name="BrandName" value="@Model.BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
-        <input type="submit" value="Güncelle" class="btn btn-success" />
-    </form>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Malzeme Tipi Listesi</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form asp-area="User" asp-controller="Admin" asp-action="BrandUpdate" method="post">
+                    <input type="hidden" name="ID" value="@Model.ID" />
+                    <input type="text" name="BrandName" value="@Model.BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+                    <input type="submit" value="Güncelle" class="btn btn-success" />
+                </form>
+            </div>
+        </div>
+    </div>
+
 }
