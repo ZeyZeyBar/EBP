@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace EBP.WebUI.Controllers
 {
@@ -99,14 +98,18 @@ namespace EBP.WebUI.Controllers
 
                     await HttpContext.SignInAsync(principal);
                     return RedirectToAction("Index", "Admin", new { area = "User" });
-                }               
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
             }
             return View();
         }
-    
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
         }
     }
