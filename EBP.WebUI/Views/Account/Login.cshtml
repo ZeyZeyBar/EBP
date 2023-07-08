@@ -4,6 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["LoginMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        Kullanıcı bilgileriniz sistemde tanımlı değildir. Gerekli Kontrolü sağlanıyınız.
+    </div>
+}
 
 <!DOCTYPE html>
 <html lang="en">
