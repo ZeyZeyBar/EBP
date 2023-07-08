@@ -16,4 +16,11 @@ elektrikPersonel            elektrikPersonel
 bilgiSistemleriSef           bilgiSistemleriSef
 bilgiSistemleriPersonel      bilgiSistemleriPersonel
 
-NOT: SQL Script dosyası da proje dosyaları içinde yer almaktadır. Code kısmında ebp_dbsrcipt.sql adında görebilirsiniz. Veri ve şemalar içeren script de Code içindedir.
+NOT: Code first kullanılmıştır ama örnek data amaçlı db scripti iletilmiştir. SQL Script dosyası da proje dosyaları içinde yer almaktadır. Code kısmında ebp_dbsrcipt.sql adında görebilirsiniz. Veri ve şemalar içeren script de Code içindedir.
+Kullanıcının login olması için öncelikle sırasıyla:
+* Departman tablosunda departmanı tanımlı olmalı
+* Personel Tablosunda kullanıcı tanımlı olmalı
+* User tablosunda personel için üç farklı yetkide (elle girilecek admin -sef-personel) personel tablosuyla ilişkili kullanıcı eklenmeli.
+Bu bilgi girişleri ardından yetkiye göre uygulama açılacaktır.
+
+
