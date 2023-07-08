@@ -11,6 +11,7 @@
     <div class="alert alert-danger" role="alert">
         Kayıt Bulunamadı..!
     </div>
+    <a asp-area="User" asp-controller="Admin" asp-action="PersonelAdd" asp-route-id="@Model" class="btn btn-success">Personel Ekle</a>
 }
 else
 {
@@ -51,6 +52,7 @@ else
                                 <td><a asp-area="User" asp-controller="Admin" asp-action="PersonelDelete" asp-route-id="@item.ID" class="btn btn-danger">Personel Silme</a></td>
                             </tr>
                         }
+                    <td style="font-family:'Times New Roman', Times, serif; font-style:initial;font-size:medium ">Toplam Personel Sayısı : @Model.Count()</td>
                     </tbody>
                 </table>                     
             </div>

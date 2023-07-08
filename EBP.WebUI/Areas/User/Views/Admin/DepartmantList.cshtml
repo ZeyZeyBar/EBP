@@ -9,6 +9,7 @@
     <div class="alert alert-danger" role="alert">
         Kayıt Bulunamadı..!
     </div>
+    <a asp-area="User" asp-controller="Admin" asp-action="DepartmentAdd" asp-route-id="@Model" class="btn btn-success">Departman Ekle</a>
 }
 else
 {
@@ -38,6 +39,7 @@ else
                                 <td><a asp-area="User" asp-controller="Admin" asp-action="DepartmentDelete" asp-route-id="@item.ID" class="btn btn-danger">Departman Silme</a></td>
                             </tr>
                         }
+                    <td style="font-family:'Times New Roman', Times, serif; font-style:initial;font-size:medium ">Toplam Departman Sayısı : @Model.Count()</td>
                     </tbody>
                 </table>
             </div>

@@ -5,32 +5,36 @@
 }
 
 <h1>Personel Giriş Sayfası</h1>
-@*
-@Model.Name &ensp; @Model.Surname*@
 
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Admin Profil Sayfası</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-7">
+                        <div class="card p-3 py-4">
+                            <div class="text-center">
+                            </div>
 
-<div class="container mt-5">
-
-    <div class="row d-flex justify-content-center">
-
-        <div class="col-md-7">
-
-            <div class="card p-3 py-4">
-
-                <div class="text-center">
-                    
-                </div>
-
-                <div class="text-center mt-3">
-                    <span class="bg-secondary p-1 px-4 rounded text-white">Kullanıcı</span>
-                    <h5 class="mt-2 mb-0">@Model.Name &ensp; @Model.Surname</h5>                    
+                            <div class="text-center mt-3">
+                                <span class="bg-secondary p-1 px-4 rounded text-white">Kullanıcı</span>
+                                <h5 class="mt-2 mb-0">@Model.Name &ensp; @Model.Surname</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
-<style>   
+
+
+<style>
     .card {
         border: none;
         position: relative;
