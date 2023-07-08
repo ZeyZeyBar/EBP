@@ -102,6 +102,7 @@ namespace EBP.WebUI.Controllers
             }
             else
             {
+                TempData["LoginMessage"] = "Kullanıcı bilgileriniz sistemde tanımlı değildir. Gerekli Kontrolü sağlanıyınız.";
                 return RedirectToAction("Login");
             }
             return View();
