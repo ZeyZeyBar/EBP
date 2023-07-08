@@ -6,9 +6,12 @@
 
 @if (TempData["LoginMessage"] != null)
 {
-    <div class="alert alert-danger" role="alert">
-        Kullanıcı bilgileriniz sistemde tanımlı değildir. Gerekli Kontrolü sağlanıyınız.
-    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Kullanıcı bilgileriniz sistemde tanımlı değildir. Gerekli Kontrolü sağlanıyınız.</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>  
 }
 
 <!DOCTYPE html>

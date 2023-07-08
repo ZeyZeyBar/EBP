@@ -5,7 +5,6 @@
     Layout = "~/Areas/User/Views/Shared/_ChiefLayout.cshtml";
 }
 
-<h1>Envanter Listesi</h1>
 
 @if (Model.Count() == 0)
 {
@@ -18,13 +17,13 @@ else
 {
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Malzeme Tipi Listesi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Envanter Listesi</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr class="m-2"><a asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" asp-route-id="@Model" class="btn btn-success">Envanter Ekle</a></tr>
+                        <tr class="mt-2"><a asp-area="User" asp-controller="Chief" asp-action="InventoryAdd" asp-route-id="@Model" class="btn btn-success">Envanter Ekle</a></tr>
                         <tr>
                             <th scope="col">Malzeme Cinsi</th>
                             <th scope="col">Malzeme Kodu</th>
