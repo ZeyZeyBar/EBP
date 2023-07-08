@@ -1,8 +1,17 @@
 # EBP
 
-Elekrtonik ve Mekanik üzerine çalışan bir firmanın envanter kontrol sistemidir. Üç farklı kullanıcı bulunmaktadır. Personel, Şef ve Admin. 
-Personel : Sadece kendi departmanına ait envanter listesini görüntüleme yetkisine sahiptir.
-Şef: Sadece kendi departmanına ait envanter listesini görme, güncelleme, ekleme ve silme yetkisine sahiptir.
-Admin : Tüm personelleri görme, ekleme, güncelleme ve silme; Uygulamaya login olacak kullanıcı listesini görme, ekleme, güncelleme ve silme; malzeme tipi ve daprtmanlarını görme, silme, ekleme ve güncelleme yetkilerine sahiptir.
+Elekrtonik ve Mekanik üzerine çalışan bir firmanın envanter kontrol sistemidir. Üç farklı kullanıcı rolü bulunmaktadır. Personel, Şef ve Admin. 
+Personel : Sadece kendi profilini ve departmanına ait envanter listesini görüntüleme yetkisine sahiptir.
+Şef: Kendi kullanıcı profilini görüntülerken; sadece kendi departmanına ait envanter listesini görme, güncelleme, ekleme ve silme yetkisine sahiptir.
+Admin : Kendi kullanıcı profilini görme ve tüm personelleri ekleme, güncelleme, görme ve silme; Uygulamaya login olacak kullanıcı listesini ekleme, güncelleme, görme ve silme; malzeme tipi listesini ekleme, güncelleme, görme ve silme yetkiyle son olarak şirketteki departmanları ekleme,güncelleme, görme ve silme sahiptir.
 
-Kullanıcı bilgileri :
+Aşağıda bir tane admin ve üç farklı departmana ait Şef ve Personel yetkilerinde kullanıcı bilgileri yer almaktadır.
+
+Kullanıcı Adı               Şifre
+admin                       admin
+mekanikPersonel             mekanikPersonel
+mekanikSef                  mekanikSef
+elektrikSef                 elektrikSef
+elektrikPersonel            elektrikPersonel
+bilgiSistemleriSef           bilgiSistemleriSef
+bilgiSistemleriPersonel      bilgiSistemleriPersonel
