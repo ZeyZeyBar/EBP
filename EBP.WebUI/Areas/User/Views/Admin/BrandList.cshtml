@@ -9,6 +9,7 @@
     <div class="alert alert-danger" role="alert">
         Kayıt Bulunamadı..!
     </div>
+    <a asp-area="User" asp-controller="Admin" asp-action="BrandAdd" asp-route-id="@Model" class="btn btn-success">Malzeme Tipi Ekle</a>
 }
 else
 {
@@ -20,7 +21,7 @@ else
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr><a asp-area="User" asp-controller="Admin" asp-action="BrandAdd" asp-route-id="@Model" class="btn btn-success">Malzeme Tipi Ekle</a></tr>
+                        <tr><a asp-area="User" asp-controller="Admin" asp-action="BrandAdd" asp-route-id="@Model" class="btn btn-success mt-2">Malzeme Tipi Ekle</a></tr>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Malzeme Tipi Adı</th>
@@ -38,32 +39,10 @@ else
                                 <td><a asp-area="User" asp-controller="Admin" asp-action="BrandDelete" asp-route-id="@item.ID" class="btn btn-danger">Malzeme Tipi Silme</a></td>
                             </tr>
                         }
+                    <td style="font-family:'Times New Roman', Times, serif; font-style:initial;font-size:medium ">Toplam Malzeme Tipi Sayısı : @Model.Count()</td>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    @*<table class="table table-striped">
-        <thead>
-            <tr><a asp-area="User" asp-controller="Admin" asp-action="BrandAdd" asp-route-id="@Model" class="btn btn-success">Malzeme Tipi Ekle</a></tr>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Malzeme Tipi Adı</th>
-                <th scope="col">Düzenleme</th>
-                <th scope="col">Silme</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">@item.ID</th>
-                    <td>@item.BrandName</td>
-                    <td><a asp-area="User" asp-controller="Admin" asp-action="BrandUpdate" asp-route-id="@item.ID" class="btn btn-warning">Malzeme Tipi Düzenle</a></td>
-                    <td><a asp-area="User" asp-controller="Admin" asp-action="BrandDelete" asp-route-id="@item.ID" class="btn btn-danger">Malzeme Tipi Silme</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
 }
