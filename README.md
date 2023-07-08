@@ -20,7 +20,7 @@ NOT: Code first kullanılmıştır ama örnek data amaçlı db scripti iletilmi�
 Kullanıcının login olması için öncelikle sırasıyla:
 * Departman tablosunda departmanı tanımlı olmalı
 * Personel Tablosunda kullanıcı tanımlı olmalı
-* User tablosunda personel için üç farklı yetkide (elle girilecek admin -sef-personel) personel tablosuyla ilişkili kullanıcı eklenmeli.
+* User tablosunda personel için üç farklı yetki (elle girilecek admin -sef-personel) ile birlikte personel tablosuyla ilişkili kullanıcı eklenmeli.
 Bu bilgi girişleri ardından yetkiye göre uygulama açılacaktır.
 
 
