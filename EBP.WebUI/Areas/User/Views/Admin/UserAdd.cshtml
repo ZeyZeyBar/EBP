@@ -4,40 +4,47 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Uygulama Kullanıcısı Ekle</h1>
-
-<form asp-area="User" asp-controller="Admin" asp-action="UserAdd" method="post">
-
-    <div class="form-group">
-        <label for="userName">Kullanıcı Adı</label> <br />
-        <input type="text" name="UserName" />
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Uygulama Kullanıcısı Ekleme</h6>
     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form asp-area="User" asp-controller="Admin" asp-action="UserAdd" method="post">
 
-    <div class="form-group">
-        <label for="lastName">Kullanıcı Son Adı</label> <br />
-        <input type="text" name="LastName" />
+                <div class="form-group">
+                    <label for="userName">Kullanıcı Adı</label> <br />
+                    <input type="text" name="UserName" />
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Kullanıcı Son Adı</label> <br />
+                    <input type="text" name="LastName" />
+                </div>
+
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" name="RolTypes">
+                        <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+                        <option value="personel">Personel</option>
+                        <option value="sef">Şef</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Personel</label><br />
+                    <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+                        @foreach (var item in Model.Personels)
+                        {
+                            <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+                        }
+                    </select>
+                </div>
+
+                <br />
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <select class="form-select" aria-label="Default select example" name="RolTypes">
-            <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
-            <option value="personel">Personel</option>
-            <option value="sef">Şef</option>
-            <option value="admin">Admin</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="department">Personel</label><br />
-        <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
-            @foreach (var item in Model.Personels)
-            {
-                <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
-            }
-        </select>
-    </div>
-
-    <br />
-
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+</div>

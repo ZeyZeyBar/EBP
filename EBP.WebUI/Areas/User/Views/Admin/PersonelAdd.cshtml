@@ -4,50 +4,55 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Personel Ekle</h1>
-<br />
-
-<form asp-area="User" asp-controller="Admin" asp-action="PersonelAdd" method="post">
-    <div class="form-group">
-
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Personel Ekle</h6>
     </div>
-        <div class="form-group" >
-            <label for="registerNo">Kayıt Numarası</label> <br />
+    <div class="card-body">
+        <div class="table-responsive">
+            <form asp-area="User" asp-controller="Admin" asp-action="PersonelAdd" method="post">
+                <div class="form-group">
+                </div>
+                <div class="form-group">
+                    <label for="registerNo">Kayıt Numarası</label> <br />
 
-            <input type="number" name="RegisterNo" />
+                    <input type="number" name="RegisterNo" />
+                </div>
+
+                <div class="form-group ">
+                    <label for="personelName">Personel Adı</label><br />
+                    <input type="text" name="PersonelName" />
+                </div>
+
+                <div class="form-group">
+                    <label for="personelLastName">Personel Soyadı</label> <br />
+                    <input type="text" name="PersonelLastName" />
+                </div>
+
+                <div class="form-group">
+                    <label for="personelAddress">Personel Adresi</label> <br />
+                    <input type="text" name="PersonelAddress" />
+                </div>
+
+                <div class="form-group">
+                    <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
+                    <input type="date" name="PersonelBirthDay" />
+                </div>
+
+                <div class="form-group">
+
+                    <label for="department">Departmanı</label><br />
+                    <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
+                        @foreach (var item in Model.Department)
+                        {
+                            <option value="@item.ID">@item.DepartmentName</option>
+                        }
+                    </select>
+                </div>
+                <br />
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
         </div>
-
-        <div class="form-group ">
-        <label for="personelName">Personel Adı</label><br />
-            <input type="text" name="PersonelName" />
-        </div>
-
-        <div class="form-group">
-        <label for="personelLastName">Personel Soyadı</label> <br />
-            <input type="text" name="PersonelLastName" />
-        </div>
-
-        <div class="form-group">
-        <label for="personelAddress">Personel Adresi</label> <br />
-            <input type="text" name="PersonelAddress" />
-        </div>
-
-        <div class="form-group">
-        <label for="personelBirthDay">Personel Doğum Tarihi</label> <br />
-            <input type="date" name="PersonelBirthDay" />
-        </div>
-
-        <div class="form-group">
-
-        <label for="department">Departmanı</label><br />
-            <select class="form-select" aria-label="Default select example" name="DepartmentID" itemid="@Model.DepartmentID">
-                @foreach (var item in Model.Department)
-                {
-                    <option value="@item.ID">@item.DepartmentName</option>
-                }
-            </select>           
-        </div>     
-        <br />
-  
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+    </div>
+</div>

@@ -4,9 +4,6 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Malzeme Tipi Ekle</h1>
-
-
 @if (ViewBag.BrandAddError != null)
 {
     <div class="alert alert-danger" role="alert">
@@ -14,14 +11,23 @@
     </div>
 }
 
-
-<form asp-area="User" asp-controller="Admin" asp-action="BrandAdd" method="post">
-    <div class="form-group">
-        <label for="brandName">Malzeme Tipini Giriniz</label><br />
-        <br />
-
-        <input type="text" name="BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Malzeme Tipi Listesi</h6>
     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form asp-area="User" asp-controller="Admin" asp-action="BrandAdd" method="post">
+                <div class="form-group">
+                    <label for="brandName">Malzeme Tipini Giriniz</label><br />
+                    <br />
 
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+                    <input type="text" name="BrandName" placeholder="Malzeme Tipi Adı Giriniz" /><br /><br />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+

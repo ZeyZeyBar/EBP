@@ -103,10 +103,11 @@ namespace EBP.WebUI.Controllers
             }
             return View();
         }
+    
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

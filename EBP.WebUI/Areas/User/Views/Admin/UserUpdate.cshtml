@@ -4,7 +4,6 @@
     Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Uygulama Kullanıcısını Güncelle</h1>
 
 @if (ViewBag.UserError != null)
 {
@@ -14,50 +13,58 @@
 }
 else
 {
-
-    <form asp-area="User" asp-controller="Admin" asp-action="UserUpdate" method="post">
-        <div class="form-group">
-            <input type="hidden" name="ID" value="@Model.ID" />
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Uygulama Kullanıcısı Güncelle</h6>
         </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form asp-area="User" asp-controller="Admin" asp-action="UserUpdate" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="ID" value="@Model.ID" />
+                    </div>
 
-        <div class="form-group">
-            <label for="userName">Kullanıcı Adı</label> <br />
-            <input type="text" name="UserName" value="@Model.UserName" />
+                    <div class="form-group">
+                        <label for="userName">Kullanıcı Adı</label> <br />
+                        <input type="text" name="UserName" value="@Model.UserName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LastName">Kullanıcı Son Adı</label> <br />
+                        <input type="text" name="LastName" value="@Model.LastName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personelFullName">Personel Tüm Ad</label> <br />
+                        <input type="text" name="PersonelFullName" value="@Model.PersonelFullName" disabled />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personels">Personel</label><br />
+                        <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
+                            <option value="@Model.PersonelID" selected>@Model.PersonelFullName</option>
+                            @foreach (var item in Model.Personels)
+                            {
+
+                                <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="from-group">
+                        <select class="form-select" aria-label="Default select example" name="RolTypes">
+                            <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
+                            <option value="personel">Personel</option>
+                            <option value="sef">Şef</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <br />
+
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="LastName">Kullanıcı Son Adı</label> <br />
-            <input type="text" name="LastName" value="@Model.LastName" />
-        </div>
-   
-        <div class="form-group">
-            <label for="personelFullName">Personel Tüm Ad</label> <br />
-            <input type="text" name="PersonelFullName" value="@Model.PersonelFullName" disabled />
-        </div>
-
-        <div class="form-group">
-            <label for="personels">Personel</label><br />
-            <select class="form-select" aria-label="Default select example" name="PersonelID" itemid="@Model.PersonelID">
-                <option value="@Model.PersonelID" selected>@Model.PersonelFullName</option>
-                @foreach (var item in Model.Personels)
-                {
-
-                    <option value="@item.ID">@item.PersonelName @item.PersonelLastName</option>
-                }
-            </select>
-        </div>
-
-        <div class="from-group">
-            <select class="form-select" aria-label="Default select example" name="RolTypes">
-                <option selected>Kullanıcı Yetki Tipini Seçiniz</option>
-                <option value="personel">Personel</option>
-                <option value="sef">Şef</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
-
-        <br />
-
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </form>
+    </div>
 }

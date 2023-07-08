@@ -6,38 +6,47 @@
 
 <h1>Envanter Düzenle</h1>
 
-
-<form asp-area="User" asp-controller="Chief" asp-action="InventoryEdit" method="post">
-    <div class="form-group">
-        <input type="hidden" name="DepartmentId" value="@Model.DepartmentID" />
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Malzeme Tipi Listesi</h6>
     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form asp-area="User" asp-controller="Chief" asp-action="InventoryEdit" method="post">
+                <div class="form-group">
+                    <input type="hidden" name="DepartmentId" value="@Model.DepartmentID" />
+                </div>
 
-    <div class="form-group">
-        <label for="materialName">Malzeme Cinsi</label> <br />
-        <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName" />
+                <div class="form-group">
+                    <label for="materialName">Malzeme Cinsi</label> <br />
+                    <input type="text" name="MaterialTypeName" value="@Model.MaterialTypeName" />
+                </div>
+
+                <div class="form-group">
+                    <label for="materialCode">Malzeme Kodu</label> <br />
+                    <input type="text" name="MaterialCode" value="@Model.MaterialCode" />
+                </div>
+
+                <div class="form-group">
+                    <label for="materialCount">Malzeme Miktarı</label> <br />
+                    <input type="number" name="Count" value="@Model.Count" />
+                </div>
+
+                <div class="form-group">
+                    <label for="materialBrand">Malzeme Markası</label><br />
+                    <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID">
+                        @foreach (var item in Model.Brands)
+                        {
+
+                            <option value="@item.ID">@item.BrandName</option>
+                        }
+                    </select>
+                </div> <br />
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="materialCode">Malzeme Kodu</label> <br />
-        <input type="text" name="MaterialCode" value="@Model.MaterialCode" />
-    </div>
-
-    <div class="form-group">
-        <label for="materialCount">Malzeme Miktarı</label> <br />
-        <input type="number" name="Count" value="@Model.Count" />
-    </div>
-
-    <div class="form-group">
-        <label for="materialBrand">Malzeme Markası</label><br />
-        <select class="form-select" aria-label="Default select example" name="BrandID" itemid="@Model.BrandID">
-            @foreach (var item in Model.Brands)
-            {
-
-                <option value="@item.ID">@item.BrandName</option>
-            }
-        </select>
-    </div> <br />
-
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
+</div>
 
