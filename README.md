@@ -15,3 +15,5 @@ elektrikSef                 elektrikSef
 elektrikPersonel            elektrikPersonel
 bilgiSistemleriSef           bilgiSistemleriSef
 bilgiSistemleriPersonel      bilgiSistemleriPersonel
+
+NOT: SQL Script dosyası da proje dosyaları içinde yer almaktadır. Code kısmında ebp_dbsrcipt.sql adında görebilirsiniz. Veri ve şemalar içeren script de Code içindedir.
